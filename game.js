@@ -6,13 +6,13 @@ var exit;
 var noExit = false;
 var PowerUp;
 
-var level = 0
+var level = 0;
 var levelString = "";
 var levelText;
 var announcement;
 var gameOver;
 var startOver;
-var kills
+var kills;
 
 var player;
 var playerMaxLife = 3;
@@ -41,7 +41,7 @@ var variant = false;
 var bullets;
 var bulletTimer = 0;
 
-var enemyBullets
+var enemyBullets;
 var enemyTimer = 0;
 
 var moveUp;
@@ -63,8 +63,8 @@ function preload() {
   game.load.image('bullet', 'assets/bullet.png');
   game.load.image('enemyBullet', 'assets/ebullet.png');
   game.load.spritesheet('life', 'assets/life.png', 16, 16, 2);
-  game.load.image('powerUp', 'assets/powerup.png')
-  game.load.image('lifeUp', 'assets/lifeup.png')
+  game.load.image('powerUp', 'assets/powerup.png');
+  game.load.image('lifeUp', 'assets/lifeup.png');
 
 }
 
@@ -108,7 +108,7 @@ function create() {
   enemyBullets.setAll('outOfBoundsKill', true);
   enemyBullets.setAll('checkWorldBounds', true);
 
-  monsters = game.add.group()
+  monsters = game.add.group();
   monsters.enableBody = true;
 
   lives = game.add.group();
@@ -394,8 +394,9 @@ function pickUp(player, drop) {
     }
   }
   else if(drop.key === "powerUp") {
+    var rand;
     if(!doubleSpeed && !doubleShot) {
-      var rand = game.rnd.integerInRange(0, 1);
+      rand = game.rnd.integerInRange(0, 1);
     }
     else if(doubleSpeed) {
       rand = 1;
@@ -438,12 +439,12 @@ function monsterHit(monster, bullet) {
     else{
       var rand = game.rnd.integerInRange(0, 10);
       if(rand < 1 && PowerUp && level > 4) {
-        drop = drops.create(monster.x, monster.y, "powerUp")
+        drop = drops.create(monster.x, monster.y, "powerUp");
         drop.body.immovable = true;
         PowerUp = false;
       }
       else if(rand < 3 && level != 1) {
-        drop = drops.create(monster.x, monster.y, "lifeUp")
+        drop = drops.create(monster.x, monster.y, "lifeUp");
         drop.body.immovable = true;
       }
     }
@@ -494,7 +495,7 @@ function restart() {
   exitText.visible = false;
   level = 0;
   killCount = 0;
-  monsterFireRate = 1200
+  monsterFireRate = 1200;
   playerFiringRate = 300;
   create ();
 }
@@ -507,7 +508,7 @@ function randomMonster(x, y) {
   var monsterType;
 
   if(level < 4) {
-    monsterType = 0
+    monsterType = 0;
   }
   else if(level === 4) {
     if(!variant) {
@@ -560,7 +561,7 @@ function randomMonster(x, y) {
 function enemyFires() {
   livingMonsters = [];
   monsters.forEachAlive(function(monster) {
-    livingMonsters.push(monster)
+    livingMonsters.push(monster);
   });
 
   if(livingMonsters.length > 0) {
